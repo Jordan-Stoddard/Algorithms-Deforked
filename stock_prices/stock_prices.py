@@ -14,15 +14,16 @@ Once loop(s) are complete, return lowest differential
 
 def find_max_profit(prices):
     profit = prices[len(prices)-1] - prices[len(prices)-2]
-    for i in range(len(prices)-1, 0, -1):
-        for j in range(len(prices)-2, 0, -1):
+    for i in range(len(prices)-1, -1, -1):
+        for j in range(i-1, -1, -1):
             current_profit = prices[i] - prices[j]
-            if current_profit > max_profit_so_far:
-              max_profit_so_far = current_profit
+            if current_profit > profit:
+              profit = current_profit
 
-    return profit, prices
+    return profit
 
-print(find_max_profit([1050, 270, 1540, 3800, 2]))
+print(find_max_profit([100, 90, 80, 50, 20, 10]))
+# print(find_max_profit([1050, 270, 1540, 3800, 2]))
 
 if __name__ == '__main__':
   # This is just some code to accept inputs from the command line
